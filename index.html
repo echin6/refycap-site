@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Refy | Sustainable Biomass Trading</title>
+    <!-- Using same font as current refycap.com -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-green: #2D8A6F;
+            --dark-green: #1a5c4a;
+            --light-green: #E8F5F0;
+            --accent-green: #4CAF93;
+            --text-dark: #1a1a1a;
+            --text-muted: #5a5a5a;
+            --background: #fafafa;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--background);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.25rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-green);
+            text-decoration: none;
+        }
+
+        .logo svg {
+            width: 36px;
+            height: 36px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-green);
+        }
+
+        .nav-contact {
+            background: var(--primary-green);
+            color: white !important;
+            padding: 0.6rem 1.25rem;
+            border-radius: 6px;
+            transition: background 0.2s !important;
+        }
+
+        .nav-contact:hover {
+            background: var(--dark-green) !important;
+            color: white !important;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 8rem 5% 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 70%;
+            height: 150%;
+            background: radial-gradient(ellipse at center, var(--light-green) 0%, transparent 70%);
+            opacity: 0.6;
+            z-index: 0;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--light-green);
+            color: var(--primary-green);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--primary-green);
+            border-radius: 50%;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 3.75rem);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+            animation: fadeInUp 0.6s ease-out 0.1s backwards;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 0.6s ease-out 0.2s backwards;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.6s ease-out 0.3s backwards;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-green);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--dark-green);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--text-dark);
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary-green);
+            color: var(--primary-green);
+        }
+
+        /* What We Trade Section */
+        .products {
+            padding: 6rem 5%;
+            background: white;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary-green);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.75rem;
+        }
+
+        h2 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: var(--background);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--light-green);
+            box-shadow: 0 20px 40px rgba(45, 138, 111, 0.1);
+        }
+
+        .product-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--light-green);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+        }
+
+        .product-icon svg {
+            width: 28px;
+            height: 28px;
+            color: var(--primary-green);
+        }
+
+        .product-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .product-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Markets Section */
+        .markets {
+            padding: 6rem 5%;
+            background: var(--background);
+        }
+
+        .markets-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .markets-text h2 {
+            margin-bottom: 1.5rem;
+        }
+
+        .markets-text p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .market-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .market-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 500;
+        }
+
+        .market-item::before {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background: var(--primary-green);
+            border-radius: 50%;
+        }
+
+        .markets-visual {
+            position: relative;
+        }
+
+        .map-container {
+            background: linear-gradient(135deg, var(--light-green) 0%, white 100%);
+            border-radius: 20px;
+            padding: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-dots {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .map-dot {
+            text-align: center;
+        }
+
+        .map-dot-circle {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 0.75rem;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        .map-dot span {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        /* Value Proposition */
+        .value {
+            padding: 6rem 5%;
+            background: var(--dark-green);
+            color: white;
+        }
+
+        .value .section-header {
+            margin-bottom: 3rem;
+        }
+
+        .value .section-label {
+            color: var(--accent-green);
+        }
+
+        .value h2 {
+            color: white;
+        }
+
+        .value .section-desc {
+            color: rgba(255,255,255,0.7);
+        }
+
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .value-item {
+            text-align: center;
+            padding: 1.5rem;
+        }
+
+        .value-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .value-label {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.8);
+        }
+
+        /* Backed By */
+        .backed {
+            padding: 4rem 5%;
+            background: white;
+            text-align: center;
+        }
+
+        .backed-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+        }
+
+        .backed-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            background: var(--background);
+            border-radius: 12px;
+        }
+
+        .backed-logo img {
+            height: 32px;
+            opacity: 0.8;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 5%;
+            background: var(--background);
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact h2 {
+            margin-bottom: 1rem;
+        }
+
+        .contact p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-email {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary-green);
+            text-decoration: none;
+            padding: 1rem 2rem;
+            background: white;
+            border-radius: 12px;
+            border: 2px solid var(--light-green);
+            transition: all 0.2s;
+        }
+
+        .contact-email:hover {
+            border-color: var(--primary-green);
+            transform: translateY(-2px);
+        }
+
+        .contact-details {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .contact-details p {
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 2rem 5%;
+            background: white;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .footer-logo svg {
+            width: 24px;
+            height: 24px;
+            color: var(--primary-green);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-green);
+        }
+
+        .footer-copy {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding-top: 6rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .markets-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .market-list {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="/" class="logo">
+            <img src="https://www.refycap.com/assests/Refy.svg" alt="Refy" style="height: 32px;">
+        </a>
+        <div class="nav-links">
+            <a href="#products">What We Trade</a>
+            <a href="#markets">Markets</a>
+            <a href="#contact" class="nav-contact">Contact Us</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">Singapore-based</div>
+            <h1>Connecting Asia's Bioenergy Supply Chain</h1>
+            <p class="hero-subtitle">We source and trade certified sustainable biomass from Southeast Asia to power generators across Japan, Korea, and Singapore.</p>
+            <div class="hero-cta">
+                <a href="#contact" class="btn btn-primary">
+                    Get in Touch
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+                <a href="#products" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="section-header">
+            <p class="section-label">What We Trade</p>
+            <h2>Sustainable Biomass Products</h2>
+            <p class="section-desc">Sourced from certified suppliers in Indonesia and Malaysia, delivered to power plants across Asia.</p>
+        </div>
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M12 6v6l4 2"/>
+                    </svg>
+                </div>
+                <h3>Palm Kernel Shells (PKS)</h3>
+                <p>High-calorific biomass fuel sourced from palm oil processing. Certified sustainable with full traceability from mill to plant.</p>
+            </div>
+            <div class="product-card">
+                <div class="product-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                </div>
+                <h3>Wood Pellets</h3>
+                <p>Industrial-grade pellets for co-firing and dedicated biomass power plants. ENplus and SBP certified options available.</p>
+            </div>
+            <div class="product-card">
+                <div class="product-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="18" height="18" rx="2"/>
+                        <path d="M3 9h18M9 21V9"/>
+                    </svg>
+                </div>
+                <h3>Wood Chips</h3>
+                <p>Consistent quality wood chips from managed forestry operations. Suitable for various boiler specifications.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Markets Section -->
+    <section class="markets" id="markets">
+        <div class="markets-content">
+            <div class="markets-text">
+                <p class="section-label">Our Markets</p>
+                <h2>Bridging Supply and Demand Across Asia</h2>
+                <p>We connect certified biomass producers in Indonesia and Malaysia with power generators seeking reliable, sustainable fuel supplies.</p>
+                <div class="market-list">
+                    <div class="market-item">Japan</div>
+                    <div class="market-item">South Korea</div>
+                    <div class="market-item">Singapore</div>
+                    <div class="market-item">Taiwan</div>
+                </div>
+            </div>
+            <div class="markets-visual">
+                <div class="map-container">
+                    <div class="map-dots">
+                        <div class="map-dot">
+                            <div class="map-dot-circle">🇮🇩</div>
+                            <span>Indonesia</span>
+                        </div>
+                        <div class="map-dot">
+                            <div class="map-dot-circle">🇲🇾</div>
+                            <span>Malaysia</span>
+                        </div>
+                        <div class="map-dot">
+                            <div class="map-dot-circle">🇻🇳</div>
+                            <span>Vietnam</span>
+                        </div>
+                        <div class="map-dot">
+                            <div class="map-dot-circle">🇯🇵</div>
+                            <span>Japan</span>
+                        </div>
+                        <div class="map-dot">
+                            <div class="map-dot-circle">🇰🇷</div>
+                            <span>Korea</span>
+                        </div>
+                        <div class="map-dot">
+                            <div class="map-dot-circle">🇸🇬</div>
+                            <span>Singapore</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Proposition -->
+    <section class="value">
+        <div class="section-header">
+            <p class="section-label">Why Refy</p>
+            <h2>Built on Trading Expertise</h2>
+            <p class="section-desc">Decades of experience in risk management and commodity trading, now focused on the energy transition.</p>
+        </div>
+        <div class="value-grid">
+            <div class="value-item">
+                <div class="value-number">18+</div>
+                <div class="value-label">Years in Trading & Finance</div>
+            </div>
+            <div class="value-item">
+                <div class="value-number">SEA</div>
+                <div class="value-label">Regional Supply Network</div>
+            </div>
+            <div class="value-item">
+                <div class="value-number">GGL</div>
+                <div class="value-label">Certification Expertise</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Backed By -->
+    <section class="backed">
+        <p class="backed-label">Backed By</p>
+        <div class="backed-logo">
+            <img src="https://www.refycap.com/assests/wavemaker.svg" alt="Wavemaker Impact" style="height: 48px;">
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="contact-content">
+            <p class="section-label">Get in Touch</p>
+            <h2>Let's Talk</h2>
+            <p>Whether you're a biomass supplier looking for market access or a power generator seeking reliable supply, we'd love to hear from you.</p>
+            <a href="mailto:contact@refycap.com" class="contact-email">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                    <path d="M22 6l-10 7L2 6"/>
+                </svg>
+                contact@refycap.com
+            </a>
+            <div class="contact-details">
+                <p><strong>Refy Pte. Ltd.</strong></p>
+                <p>Singapore</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="https://www.refycap.com/assests/Refy.svg" alt="Refy" style="height: 24px;">
+            </div>
+            <div class="footer-links">
+                <a href="https://www.linkedin.com/company/refycap/" target="_blank">LinkedIn</a>
+                <a href="mailto:contact@refycap.com">Contact</a>
+            </div>
+            <p class="footer-copy">© 2025 Refy Pte. Ltd. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
