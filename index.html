@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Refy | Sustainable Biomass Trading</title>
-    <!-- Using same font as current refycap.com -->
+    <!-- Using Bricolage Grotesque like Wavemaker Impact site -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-green: #2D8A6F;
@@ -27,7 +27,7 @@
         }
 
         body {
-            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Bricolage Grotesque', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--background);
             color: var(--text-dark);
             line-height: 1.6;
@@ -44,8 +44,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background: #ffffff;
             z-index: 1000;
             border-bottom: 1px solid rgba(0,0,0,0.05);
         }
@@ -105,17 +104,20 @@
             padding: 8rem 5% 4rem;
             position: relative;
             overflow: hidden;
+            background-image: url('https://www.refycap.com/assests/greenfield.svg');
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
 
         .hero::before {
             content: '';
             position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 70%;
-            height: 150%;
-            background: radial-gradient(ellipse at center, var(--light-green) 0%, transparent 70%);
-            opacity: 0.6;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.55);
             z-index: 0;
         }
 
@@ -129,21 +131,23 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            background: var(--light-green);
-            color: var(--primary-green);
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
             padding: 0.5rem 1rem;
             border-radius: 50px;
             font-size: 0.85rem;
             font-weight: 600;
             margin-bottom: 1.5rem;
             animation: fadeInUp 0.6s ease-out;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .hero-badge::before {
             content: '';
             width: 8px;
             height: 8px;
-            background: var(--primary-green);
+            background: var(--accent-green);
             border-radius: 50%;
         }
 
@@ -152,13 +156,13 @@
             font-weight: 700;
             line-height: 1.15;
             margin-bottom: 1.5rem;
-            color: var(--text-dark);
+            color: white;
             animation: fadeInUp 0.6s ease-out 0.1s backwards;
         }
 
         .hero-subtitle {
             font-size: 1.25rem;
-            color: var(--text-muted);
+            color: rgba(255, 255, 255, 0.9);
             max-width: 600px;
             margin-bottom: 2.5rem;
             animation: fadeInUp 0.6s ease-out 0.2s backwards;
@@ -184,24 +188,25 @@
         }
 
         .btn-primary {
-            background: var(--primary-green);
+            background: var(--accent-green);
             color: white;
         }
 
         .btn-primary:hover {
-            background: var(--dark-green);
+            background: var(--primary-green);
             transform: translateY(-2px);
         }
 
         .btn-secondary {
-            background: white;
-            color: var(--text-dark);
-            border: 1px solid rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
         }
 
         .btn-secondary:hover {
-            border-color: var(--primary-green);
-            color: var(--primary-green);
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
         }
 
         /* What We Trade Section */
@@ -441,15 +446,12 @@
         .backed-logo {
             display: inline-flex;
             align-items: center;
-            gap: 0.75rem;
-            padding: 1rem 2rem;
-            background: var(--background);
-            border-radius: 12px;
+            justify-content: center;
         }
 
         .backed-logo img {
-            height: 32px;
-            opacity: 0.8;
+            height: 120px;
+            width: auto;
         }
 
         /* Contact Section */
@@ -743,7 +745,7 @@
     <section class="backed">
         <p class="backed-label">Backed By</p>
         <div class="backed-logo">
-            <img src="https://www.refycap.com/assests/wavemaker.svg" alt="Wavemaker Impact" style="height: 48px;">
+            <img src="https://www.refycap.com/assests/wavemaker.svg" alt="Wavemaker Impact">
         </div>
     </section>
 
