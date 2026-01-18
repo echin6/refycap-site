@@ -40,13 +40,16 @@
             top: 0;
             left: 0;
             right: 0;
-            padding: 1.25rem 5%;
+            padding: 1rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: #ffffff;
+            background: linear-gradient(135deg, rgba(232, 245, 240, 0.95) 0%, rgba(255, 255, 255, 0.92) 100%);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             z-index: 1000;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(45, 138, 111, 0.1);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.04);
         }
 
         .logo {
@@ -59,23 +62,49 @@
             text-decoration: none;
         }
 
+        .logo img {
+            height: 48px;
+            width: auto;
+            transition: transform 0.2s ease;
+        }
+
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+
         .logo svg {
-            width: 36px;
-            height: 36px;
+            width: 48px;
+            height: 48px;
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 2.5rem;
             align-items: center;
         }
 
         .nav-links a {
-            color: var(--text-muted);
+            color: var(--text-dark);
             text-decoration: none;
             font-weight: 500;
             font-size: 0.95rem;
             transition: color 0.2s;
+            position: relative;
+        }
+
+        .nav-links a:not(.nav-contact)::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-green);
+            transition: width 0.2s ease;
+        }
+
+        .nav-links a:not(.nav-contact):hover::after {
+            width: 100%;
         }
 
         .nav-links a:hover {
@@ -85,14 +114,17 @@
         .nav-contact {
             background: var(--primary-green);
             color: white !important;
-            padding: 0.6rem 1.25rem;
-            border-radius: 6px;
-            transition: background 0.2s !important;
+            padding: 0.7rem 1.5rem;
+            border-radius: 8px;
+            transition: all 0.2s ease !important;
+            box-shadow: 0 2px 8px rgba(45, 138, 111, 0.25);
         }
 
         .nav-contact:hover {
             background: var(--dark-green) !important;
             color: white !important;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(45, 138, 111, 0.35);
         }
 
         /* Hero Section */
@@ -104,7 +136,7 @@
             padding: 8rem 5% 4rem;
             position: relative;
             overflow: hidden;
-            background-image: url('https://www.refycap.com/assests/greenfield.svg');
+            background-image: url('greenfield.svg');
             background-position: center center;
             background-repeat: no-repeat;
             background-size: cover;
@@ -518,10 +550,10 @@
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             flex-wrap: wrap;
-            gap: 1rem;
+            gap: 2rem;
         }
 
         .footer-logo {
@@ -532,21 +564,27 @@
             color: var(--text-muted);
         }
 
+        .footer-logo img {
+            height: 28px;
+            width: auto;
+        }
+
         .footer-logo svg {
-            width: 24px;
-            height: 24px;
+            width: 28px;
+            height: 28px;
             color: var(--primary-green);
         }
 
         .footer-links {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
         }
 
         .footer-links a {
             color: var(--text-muted);
             text-decoration: none;
             font-size: 0.9rem;
+            transition: color 0.2s;
         }
 
         .footer-links a:hover {
@@ -572,16 +610,86 @@
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
+            nav {
+                padding: 0.75rem 5%;
+            }
+
+            .logo img {
+                height: 40px;
+            }
+
             .nav-links {
                 display: none;
             }
 
+            /* Mobile menu button */
+            .mobile-menu-btn {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                background: none;
+                border: none;
+                cursor: pointer;
+                padding: 8px;
+            }
+
+            .mobile-menu-btn span {
+                width: 24px;
+                height: 2px;
+                background: var(--primary-green);
+                border-radius: 2px;
+                transition: 0.2s;
+            }
+
             .hero {
-                padding-top: 6rem;
+                padding: 6rem 5% 3rem;
+                min-height: auto;
             }
 
             h1 {
-                font-size: 2rem;
+                font-size: 1.85rem;
+                line-height: 1.2;
+            }
+
+            .hero-subtitle {
+                font-size: 1.05rem;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+                padding: 0.9rem 1.5rem;
+            }
+
+            /* Products */
+            .products {
+                padding: 3.5rem 5%;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 1.25rem;
+            }
+
+            .product-card {
+                padding: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.65rem;
+            }
+
+            .section-header {
+                margin-bottom: 2.5rem;
+            }
+
+            /* Markets */
+            .markets {
+                padding: 3.5rem 5%;
             }
 
             .markets-content {
@@ -590,12 +698,88 @@
             }
 
             .market-list {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 1fr;
+                gap: 0.75rem;
             }
 
+            .market-item {
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            /* Value section */
+            .value {
+                padding: 3.5rem 5%;
+            }
+
+            .value-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .value-item {
+                padding: 1.5rem;
+            }
+
+            .value-number {
+                font-size: 2rem;
+            }
+
+            /* Backed by */
+            .backed {
+                padding: 2.5rem 5%;
+            }
+
+            .backed-logo img {
+                max-width: 180px;
+            }
+
+            /* Contact */
+            .contact {
+                padding: 3.5rem 5%;
+            }
+
+            .contact-content h2 {
+                font-size: 1.65rem;
+            }
+
+            .contact-email {
+                font-size: 1rem;
+                padding: 0.9rem 1.25rem;
+            }
+
+            /* Footer */
             .footer-content {
                 flex-direction: column;
                 text-align: center;
+                gap: 1rem;
+            }
+
+            footer {
+                padding: 1.5rem 5%;
+            }
+        }
+
+        /* Small phones */
+        @media (max-width: 380px) {
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            .market-list {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-badge {
+                font-size: 0.75rem;
+                padding: 0.4rem 0.8rem;
+            }
+        }
+
+        /* Desktop: hide mobile menu button */
+        @media (min-width: 769px) {
+            .mobile-menu-btn {
+                display: none;
             }
         }
     </style>
@@ -604,13 +788,18 @@
     <!-- Navigation -->
     <nav>
         <a href="/" class="logo">
-            <img src="https://www.refycap.com/assests/Refy.svg" alt="Refy" style="height: 32px;">
+            <img src="Refy.webp" alt="Refy">
         </a>
         <div class="nav-links">
             <a href="#products">What We Trade</a>
             <a href="#markets">Markets</a>
             <a href="#contact" class="nav-contact">Contact Us</a>
         </div>
+        <a href="#contact" class="mobile-menu-btn" aria-label="Contact">
+            <span></span>
+            <span></span>
+            <span></span>
+        </a>
     </nav>
 
     <!-- Hero Section -->
@@ -745,7 +934,7 @@
     <section class="backed">
         <p class="backed-label">Backed By</p>
         <div class="backed-logo">
-            <img src="https://www.refycap.com/assests/wavemaker.svg" alt="Wavemaker Impact">
+            <img src="wavemaker.svg" alt="Wavemaker Impact">
         </div>
     </section>
 
@@ -762,10 +951,6 @@
                 </svg>
                 contact@refycap.com
             </a>
-            <div class="contact-details">
-                <p><strong>Refy Pte. Ltd.</strong></p>
-                <p>Singapore</p>
-            </div>
         </div>
     </section>
 
@@ -773,13 +958,13 @@
     <footer>
         <div class="footer-content">
             <div class="footer-logo">
-                <img src="https://www.refycap.com/assests/Refy.svg" alt="Refy" style="height: 24px;">
+                <img src="Refy.webp" alt="Refy">
             </div>
+            <p class="footer-copy">© 2025 Refy Pte. Ltd. All rights reserved.</p>
             <div class="footer-links">
                 <a href="https://www.linkedin.com/company/refycap/" target="_blank">LinkedIn</a>
                 <a href="mailto:contact@refycap.com">Contact</a>
             </div>
-            <p class="footer-copy">© 2025 Refy Pte. Ltd. All rights reserved.</p>
         </div>
     </footer>
 </body>
